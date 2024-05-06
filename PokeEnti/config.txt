@@ -1,0 +1,3 @@
+50;70; // Ancho y alto del mapa
+6;10; // Pokémon iniciales en Pueblo Paleta y Pokémon para desbloquear
+18;20; // Pokémon iniciales en el Bosque y Pokémon para desbloquear
