@@ -1,5 +1,6 @@
 #include "PokeEnti.h"
 
+
 // Definiciones de funciones
 
 Configuration loadConfiguration(const char* filename) {
@@ -18,6 +19,7 @@ Configuration loadConfiguration(const char* filename) {
 
     return conf;
 }
+
 
 // Función para crear el mapa y definir paredes
 Map createMap(int width, int height) {
@@ -88,7 +90,6 @@ void placePokemons(Map& map, const Configuration& config) {
 }
 
 
-
 void displayMap(Map& map, Player& player) {
     system("cls"); // Limpiar la consola para redibujar el mapa
     for (int i = 0; i < map.height; i++) {
@@ -110,12 +111,11 @@ void movePlayer(Player& player, int dx, int dy, Map& map) {
     int newY = player.y + dy;
 
     // Verificar que el movimiento esté dentro de los límites y no atraviese paredes
-    if (newX >= 0 && newX < map.width && newY >= 0 && newY < map.height && map.data[newY][newX] != 'X') {
+    if (newX > 0 && newX < map.width && newY > 0 && newY < map.height && map.data[newY][newX] != 'X') {
         player.x = newX; // Asignar la nueva posición
         player.y = newY;
     }
 }
-
 
 
 void capturePokemon(Player& player, Map& map) {
@@ -166,6 +166,7 @@ void unlockZones(Player& player, Map& map, const Configuration& config) {
     }
 }
 
+
 void gameLoop(Map& map, Player& player, const Configuration& config) {
     bool running = true;
 
@@ -199,16 +200,15 @@ void gameLoop(Map& map, Player& player, const Configuration& config) {
         }
 
         if (moved) {
-            displayMap(map, player); // Redibujar el mapa
+          
             capturePokemon(player, map); // Verificar si se capturan Pokémon
             unlockZones(player, map, config); // Desbloquear zonas si es necesario
         }
 
+        displayMap(map, player); // Redibujar el mapa
         Sleep(100); // Controlar la velocidad del bucle
     }
 }
-
-
 
 
 void freeMap(Map& map) {
@@ -217,6 +217,8 @@ void freeMap(Map& map) {
     }
     delete[] map.data;
 }
+
+
 
 // Función principal
 
@@ -244,13 +246,15 @@ int main() {
     placePokemons(map, config);
 
     // Iniciar al jugador
-    Player ash = { 0, 0, 'v', 0 }; // Iniciar en la posición (0, 0)
+    Player ash = { 1, 1, 'v', 0 }; // Iniciar en la posición (0, 0)
 
     // Iniciar el bucle del juego
     gameLoop(map, ash, config);
 
     // Liberar recursos al final
     freeMap(map);
+
+
 
     return 0;
 }
