@@ -18,9 +18,39 @@
     <ClCompile Include="PokeEnti.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="personaje.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="liderGimnasio.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pokemon.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zonas.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="juego.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PokeEnti.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="personaje.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="liderGimnasio.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pokemon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="zonas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="juego.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

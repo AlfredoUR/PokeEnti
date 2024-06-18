@@ -127,10 +127,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="juego.cpp" />
+    <ClCompile Include="liderGimnasio.cpp" />
+    <ClCompile Include="personaje.cpp" />
     <ClCompile Include="PokeEnti.cpp" />
+    <ClCompile Include="pokemon.cpp" />
+    <ClCompile Include="zonas.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="juego.h" />
+    <ClInclude Include="liderGimnasio.h" />
+    <ClInclude Include="personaje.h" />
     <ClInclude Include="PokeEnti.h" />
+    <ClInclude Include="pokemon.h" />
+    <ClInclude Include="zonas.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

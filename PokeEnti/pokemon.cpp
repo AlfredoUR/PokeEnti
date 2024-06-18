@@ -1,3 +1,4 @@
+
 #include "pokemon.h"
 
 Pokemons::Pokemons(int posX, int posY, char simbolo, int vida) : posX(posX), posY(posY), simbolo(simbolo), vida(vida) {}
