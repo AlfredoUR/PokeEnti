@@ -138,7 +138,6 @@
     <ClInclude Include="juego.h" />
     <ClInclude Include="liderGimnasio.h" />
     <ClInclude Include="personaje.h" />
-    <ClInclude Include="PokeEnti.h" />
     <ClInclude Include="pokemon.h" />
     <ClInclude Include="zonas.h" />
   </ItemGroup>
