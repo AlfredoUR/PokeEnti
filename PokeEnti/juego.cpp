@@ -93,9 +93,11 @@ void Juego::ArchivoConfiguracion(const std::string& nombreArch) {
 
 void Juego::MuestraPantallaDeBienvenida() const {
     std::system("cls");
-    std::cout << "---------------------" << std::endl;
-    std::cout << "       POKEENTI       " << std::endl;
-    std::cout << "---------------------" << std::endl;
+    std::cout << "                        ----------------------" << std::endl;
+    std::cout << " " << std::endl;
+    std::cout << "                                POKEENTI        " << std::endl;
+    std::cout << " " << std::endl;
+    std::cout << "                        ----------------------" << std::endl;
     std::cout << std::endl << std::endl << "CARGANDO..." << std::endl;
     std::this_thread::sleep_for(std::chrono::seconds(0));
 }
@@ -108,9 +110,10 @@ void Juego::MuestraMenuPrincipal() const {
     std::cout << " " << std::endl;
     std::cout << "                        ----------------------" << std::endl;
     std::cout << " " << std::endl;
-    std::cout << "PULSE 1 PARA COMENZAR" << std::endl;
     std::cout << " " << std::endl;
-    std::cout << "PULSE 2. PARA SALIR" << std::endl;
+    std::cout << "PULSE 1 PARA COMENZAR A JUGAR" << std::endl;
+    std::cout << " " << std::endl;
+    std::cout << "PULSE 2 PARA SALIR DEL JUEGO" << std::endl;
     std::cout << " " << std::endl;
 }
 
