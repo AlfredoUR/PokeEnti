@@ -80,7 +80,7 @@ void Juego::ArchivoConfiguracion(const std::string& nombreArch) {
         archivo.close();
     }
     else {
-        std::cout << "No se puede abrir el archivo." << std::endl;
+        std::cout << "No se puedo abrir el archivo." << std::endl;
     }
 
     // Inicializa las zonas con los valores leidos
@@ -98,7 +98,7 @@ void Juego::MuestraPantallaDeBienvenida() const {
     std::cout << "-----------------" << std::endl;
     std::cout << "-   -POKENTI-   -" << std::endl;
     std::cout << "-----------------" << std::endl;
-    std::cout << std::endl << std::endl << "Cargando..." << std::endl;
+    std::cout << std::endl << std::endl << "CARGANDO..." << std::endl;
     std::this_thread::sleep_for(std::chrono::seconds(0));
 }
 
@@ -146,7 +146,7 @@ void Juego::Comienzo() {
             if (std::cin.fail()) {
                 std::cin.clear(); // clear the fail state
                 borrarInputDeEntrada(); // ignore invalid input
-                std::cout << "Opcion invalida" << std::endl;
+                std::cout << "OPCION INVALIDA" << std::endl;
                 continue;
             }
             if (eleccion == 1) {
@@ -155,18 +155,18 @@ void Juego::Comienzo() {
                 estado = JUGANDO;
             }
             else if (eleccion == 2) {
-                std::cout << "Gracias por jugar! Hasta luego!" << std::endl;
+                std::cout << "GRACIAS POR PROVAR EL JUEGO!" << std::endl;
                 estado = FINAL_DEL_JUEGO;
             }
             else {
-                std::cout << "Opcion invalida" << std::endl;
+                std::cout << "OPCION INVALIDA" << std::endl;
             }
             break;
         case JUGANDO:
             JugarAlJuego(estado);  // Pasa state como referencia
             if (personaje->ObtenerPokeballsRecogidas() < 0) {
                 estado = FINAL_DEL_JUEGO;
-                std::cout << "No te quedan pokeballs para capturar este pokemon" << std::endl;
+                std::cout << "NO QUEDAN POKEBALLS EN EL INVENTARIO" << std::endl;
             }
             break;
         case FINAL_DEL_JUEGO:
@@ -250,15 +250,15 @@ void Juego::JugarAlJuego(EstadoJuego& estado) {
     bool corrinedo = true;
     while (corrinedo) {
         std::system("cls");
-        std::cout << "Tienes " << personaje->ObtenerPokeballsRecogidas() << " Pokeball/s" << std::endl;
-        std::cout << "Pokemons capturados: " << personaje->ObtenerPokemonsCapturados() << std::endl;
-        std::cout << "Estas en: " << ObtenerNombreZonaActual() << std::endl << std::endl;
+        std::cout << "USTED TIENE " << personaje->ObtenerPokeballsRecogidas() << " POKEBALLS" << std::endl;
+        std::cout << "NUMERO DE POKEMONS CAPTURADOS: " << personaje->ObtenerPokemonsCapturados() << std::endl;
+        std::cout << "USTED SE ENCUENTRA EN: " << ObtenerNombreZonaActual() << std::endl << std::endl;
 
         zonas[salaActual]->Muestra(personaje->ObtenerPosX(), personaje->ObtenerPosY(), personaje->ObtenerSimbolo());
 
         ManejoInput(corrinedo, estado);
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(50)); // Control de frames
+        std::this_thread::sleep_for(std::chrono::milliseconds(1)); // Control de frames
     }
 }
 
@@ -280,31 +280,31 @@ void Juego::MostrarMenuDeBatallaLideresGimnasio(LiderGimnasio& liderGimnasio, bo
 
     while (enBatalla && corriendo) {
         std::system("cls");
-        std::cout << "Pokemons capturados: " << personaje->ObtenerPokemonsCapturados() << "   Pokeballs: " << personaje->ObtenerPokeballsRecogidas() << std::endl;
-        std::cout << "Estas en: " << ObtenerNombreZonaActual() << std::endl;
-        std::cout << "-----------------------------------------------" << std::endl;
+        std::cout << "NUMERO TOTAL DE POKEMONS CAPTURADOS: " << personaje->ObtenerPokemonsCapturados() << "   NUMERO DE POKEBALLS OBTENIDAS: " << personaje->ObtenerPokeballsRecogidas() << std::endl;
+        std::cout << "USTED SE ENCUENTRA EN: " << ObtenerNombreZonaActual() << std::endl;
+        std::cout << "-----------------------------------------------------------------------------" << std::endl;
 
         // Mapa
         zonas[salaActual]->Muestra(personaje->ObtenerPosX(), personaje->ObtenerPosY(), personaje->ObtenerSimbolo());
 
         // Menu combate
-        std::cout << "-----------------------------------------------" << std::endl;
-        std::cout << "¡Te has encontrado con el lider de gimnasio " << liderGimnasio.ObtenerNombre() << "!" << std::endl;
-        std::cout << "Lider: " << liderGimnasio.ObtenerSimbolo() << "  Salud: " << liderGimnasio.ObtenerVida() << std::endl;
-        std::cout << "-----------------------------------------------" << std::endl;
-        std::cout << "[A]tacar  [H]uir" << std::endl;
+        std::cout << "-----------------------------------------------------------------------------" << std::endl;
+        std::cout << "¡SE HA ENCONTRADO CON EL LIDER DEL GIMNASIO " << liderGimnasio.ObtenerNombre() << "!" << std::endl;
+        std::cout << "LIDER: " << liderGimnasio.ObtenerSimbolo() << "  VIDA: " << liderGimnasio.ObtenerVida() << std::endl;
+        std::cout << "-----------------------------------------------------------------------------" << std::endl;
+        std::cout << "[A] PARA ATACAR,  [H] PARA HUIR" << std::endl;
 
         if (GetAsyncKeyState('A')) {
             liderGimnasio.DisminucionVida(personaje->ObtenerPokemonDanyo());
             std::this_thread::sleep_for(std::chrono::milliseconds(200));
 
             if (liderGimnasio.ObtenerVida() <= 0) {
-                std::cout << "¡Has derrotado al lider de gimnasio " << liderGimnasio.ObtenerNombre() << "!" << std::endl;
+                std::cout << "¡HA DERROTADO A " << liderGimnasio.ObtenerNombre() << "!" << std::endl;
                 std::this_thread::sleep_for(std::chrono::seconds(2));
                 enBatalla = false;
 
                 if (LideresDeGimnasioVencidos()) {
-                    std::cout << "¡Felicidades! Has derrotado a todos los lideres de gimnasio y completado el juego!" << std::endl;
+                    std::cout << "USTED HA VENCIDO A LOS LIDERES DE GIMNASIO Y HA COMPLETADO ESTA AVNETURA" << std::endl;
                     std::this_thread::sleep_for(std::chrono::seconds(3));
                     estado = MENU_PRINCIPAL;
                     corriendo = false;
@@ -312,7 +312,7 @@ void Juego::MostrarMenuDeBatallaLideresGimnasio(LiderGimnasio& liderGimnasio, bo
             }
         }
         else if (GetAsyncKeyState('H')) {
-            std::cout << "¡Has huido del combate!" << std::endl;
+            std::cout << "USTED HA HUIDO DEL COMBATE" << std::endl;
             std::this_thread::sleep_for(std::chrono::seconds(2));
             enBatalla = false;
         }
@@ -325,20 +325,20 @@ void Juego::MuestraMenuDeBatalla(Pokemons& pokemon, bool& corriendo, EstadoJuego
 
     while (enBatalla && corriendo) {
         std::system("cls");
-        std::cout << "Pokemons capturados: " << personaje->ObtenerPokemonsCapturados() << "   Pokeballs: " << personaje->ObtenerPokeballsRecogidas() << std::endl;
-        std::cout << "Estas en: " << ObtenerNombreZonaActual() << std::endl;
-        std::cout << "-----------------------------------------------" << std::endl;
+        std::cout << "NUMERO DE POKEMONS CAPTURADOS: " << personaje->ObtenerPokemonsCapturados() << "   NUMERO DE POKEBALLS OBTENIDAS: " << personaje->ObtenerPokeballsRecogidas() << std::endl;
+        std::cout << "USTED SE ENCUENTRA EN: " << ObtenerNombreZonaActual() << std::endl;
+        std::cout << "-----------------------------------------------------------------------------" << std::endl;
 
         // mapa
         zonas[salaActual]->Muestra(personaje->ObtenerPosX(), personaje->ObtenerPosY(), personaje->ObtenerSimbolo());
 
         // combate
-        std::cout << "-----------------------------------------------" << std::endl;
-        std::cout << "¡Te has encontrado con un Pokemon salvaje!" << std::endl;
-        std::cout << "Pokemon: " << pokemon.ObtenerSimbolo() << "  Salud: " << pokemon.ObtenerVida() << std::endl;
-        std::cout << "1. Atacar" << std::endl;
-        std::cout << "2. Capturar" << std::endl;
-        std::cout << "3. Huir" << std::endl;
+        std::cout << "-----------------------------------------------------------------------------" << std::endl;
+        std::cout << "¡SE HA ENCONTRADO CON UN POKEMON SALVAJE!" << std::endl;
+        std::cout << "POKEMON: " << pokemon.ObtenerSimbolo() << "  VIDA: " << pokemon.ObtenerVida() << std::endl;
+        std::cout << "1. ATACAR" << std::endl;
+        std::cout << "2. CAPTURAR" << std::endl;
+        std::cout << "3. HUIR" << std::endl;
 
         int eleccion;
         borrarInputDeEntrada();
@@ -353,15 +353,15 @@ void Juego::MuestraMenuDeBatalla(Pokemons& pokemon, bool& corriendo, EstadoJuego
         switch (eleccion) {
         case 1: // Atacar
             pokemon.DisminucionVida(personaje->ObtenerPokemonDanyo());
-            std::cout << "Has atacado al Pokemon! Salud restante: " << pokemon.ObtenerVida() << std::endl;
+            std::cout << "HA ATACADO AL POKEMON RIVAL. SALUD RESTANTE: " << pokemon.ObtenerVida() << std::endl;
             if (pokemon.ObtenerVida() == 0) {
                 if (esMewtwo) {
                     zonas[salaActual]->RetirarMewtwo(); // Mewtwo desaparece
-                    std::cout << "Mewtwo ha sido derrotado y ha desaparecido para siempre!" << std::endl;
+                    std::cout << "¡MEWTWO HA SIDO VENCIDO!" << std::endl;
                 }
                 else {
                     zonas[salaActual]->RetirarPokemon(pokemon.ObtenerPosX(), pokemon.ObtenerPosY());
-                    std::cout << "El Pokemon ha sido derrotado!" << std::endl;
+                    std::cout << "EL POKEMON RIVAL HA SIDO VENCIDO!" << std::endl;
                 }
                 enBatalla = false;
             }
@@ -377,27 +377,27 @@ void Juego::MuestraMenuDeBatalla(Pokemons& pokemon, bool& corriendo, EstadoJuego
                     personaje->AumentarCuentaPokemons();
                     if (esMewtwo) {
                         zonas[salaActual]->RetirarMewtwo(); // Mewtwo desaparece para siempre
-                        std::cout << "Has capturado a Mewtwo!" << std::endl;
+                        std::cout << "HA CAPTURADO A MEWTWO!" << std::endl;
                     }
                     else {
                         zonas[salaActual]->RetirarPokemon(pokemon.ObtenerPosX(), pokemon.ObtenerPosY());
-                        std::cout << "Has capturado el Pokemon!" << std::endl;
+                        std::cout << "HA CAPTURADO AL POKEMON SALVAJE!" << std::endl;
                     }
                     enBatalla = false;
                 }
                 else {
-                    std::cout << "El Pokemon escapo del Pokeball!" << std::endl;
+                    std::cout << "EL POKEMON SALVAJE ESCAPÓ DE LA POKEBALL!" << std::endl;
                 }
             }
             else {
-                std::cout << "No tienes Pokeballs suficientes!" << std::endl;
+                std::cout << "NO LE QUEDAN POKEBALLS" << std::endl;
             }
             break;
         case 3: // Huir
-            std::cout << "Has huido del combate." << std::endl;
+            std::cout << "HUISTE DEL COMBATE" << std::endl;
             if (esMewtwo) {
                 zonas[salaActual]->RetirarMewtwo(); // Mewtwo desaparece para siempre
-                std::cout << "Mewtwo ha desaparecido para siempre." << std::endl;
+                std::cout << "MEWTWO HA DESAPARECIDO" << std::endl;
             }
             enBatalla = false;
             break;
