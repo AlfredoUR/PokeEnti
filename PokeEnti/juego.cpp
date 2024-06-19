@@ -1,3 +1,4 @@
+// juego.cpp
 
 #include "juego.h"
 
@@ -94,22 +95,25 @@ void Juego::ArchivoConfiguracion(const std::string& nombreArch) {
 
 void Juego::MuestraPantallaDeBienvenida() const {
     std::system("cls");
-    std::cout << "-------------------------------------------" << std::endl;
-    std::cout << "-                -POKENTI-                -" << std::endl;
-    std::cout << "-------------------------------------------" << std::endl;
+    std::cout << "-----------------" << std::endl;
+    std::cout << "-   -POKENTI-   -" << std::endl;
+    std::cout << "-----------------" << std::endl;
     std::cout << std::endl << std::endl << "Cargando..." << std::endl;
     std::this_thread::sleep_for(std::chrono::seconds(0));
 }
 
 void Juego::MuestraMenuPrincipal() const {
     std::system("cls");
-    std::cout << "-------------------------------------------" << std::endl;
-    std::cout << "-                -POKENTI-                -" << std::endl;
-    std::cout << "-------------------------------------------" << std::endl;
+    std::cout << "-----------------" << std::endl;
+    std::cout << "-   -POKENTI-   -" << std::endl;
+    std::cout << "-----------------" << std::endl;
+    std::cout << " " << std::endl;
     std::cout << "BIENVENIDO!" << std::endl;
     std::cout << " " << std::endl;
-    std::cout << "1. COMENZAR" << std::endl;
-    std::cout << "2. Salir" << std::endl;
+    std::cout << "PULSE 1 PARA COMENZAR" << std::endl;
+    std::cout << " " << std::endl;
+    std::cout << "PULSE 2. PARA SALIR" << std::endl;
+    std::cout << " " << std::endl;
 }
 
 std::string Juego::ObtenerNombreZonaActual() const {
@@ -254,7 +258,7 @@ void Juego::JugarAlJuego(EstadoJuego& estado) {
 
         ManejoInput(corrinedo, estado);
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(100)); // Control de frames
+        std::this_thread::sleep_for(std::chrono::milliseconds(50)); // Control de frames
     }
 }
 
