@@ -97,7 +97,7 @@ void Zonas::RetirarPokemon(int x, int y) {
         if (pokemons[contador] && pokemons[contador]->ObtenerPosX() == x && pokemons[contador]->ObtenerPosY() == y) {
             delete pokemons[contador];
             pokemons[contador] = nullptr;
-            cuadricula[x][y] = ' '; // Eliminar del mapa
+            cuadricula[x][y] = ' ';
             break;
         }
     }
@@ -128,10 +128,10 @@ void Zonas::Muestra(int personajePosX, int personajePosY, char personajeSimbolo)
                 std::cout << personajeSimbolo;
             }
             else if (pokemon) {
-                std::cout << 'P'; // Pokemon
+                std::cout << 'P';
             }
             else if (mewtwo && mewtwo->ObtenerPosX() == contador && mewtwo->ObtenerPosY() == contador2) {
-                std::cout << 'M'; // Mewtwo
+                std::cout << 'M';
             }
             else {
                 std::cout << cuadricula[contador][contador2];

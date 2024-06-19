@@ -11,7 +11,6 @@ Juego::Juego() {
 
     ArchivoConfiguracion("config.txt");
 
-    // Añadir lideres de gimnasio a la Liga Pokemon (ultima zona)
     LiderGimnasio* jefeFinal1 = new LiderGimnasio(10, 10, 'r', "Jefe Final 1", 200);
     LiderGimnasio* jefeFinal2 = new LiderGimnasio(15, 15, 'R', "Jefe Final 2", 200);
     zonas[3]->AnyadirLiderGimnasio(jefeFinal1);
@@ -37,36 +36,36 @@ void Juego::ArchivoConfiguracion(const std::string& nombreArch) {
             int num1, num2;
 
             switch (contador) {
-            case 0: // Dimensiones mapa
+            case 0: 
                 if (obtenerNum >> num1 && obtenerNum.ignore() && obtenerNum >> num2) {
                     anchuraMapa = num1;
                     alturaMapa = num2;
                 }
                 break;
-            case 1: // Pokemon en Pueblo Paleta y Pokemon requeridos para desbloquear
+            case 1: 
                 if (obtenerNum >> num1 && obtenerNum.ignore() && obtenerNum >> num2) {
                     puebloPaletaPokemon = num1;
                     puebloPaletaDesbloquear = num2;
                 }
                 break;
-            case 2: // Pokemon en el Bosque y Pokemon requeridos para desbloquear
+            case 2: 
                 if (obtenerNum >> num1 && obtenerNum.ignore() && obtenerNum >> num2) {
                     bosquePokemon = num1;
                     bosqueDesbloquear = num2;
                 }
                 break;
-            case 3: // ataque de Pikachu
+            case 3:
                 if (obtenerNum >> num1) {
                     pokemonDanyo = num1;
                 }
                 break;
-            case 4: // Salud Pokemons salvajes y salud de Mewtwo
+            case 4:
                 if (obtenerNum >> num1 && obtenerNum.ignore() && obtenerNum >> num2) {
                     pokemonVida = num1;
                     mewtwoVida = num2;
                 }
                 break;
-            case 5: // movimiento de los Pokemon (no implementado)
+            case 5: 
                 if (obtenerNum >> num1 && obtenerNum.ignore() && obtenerNum >> num2) {
                     minTiempoEspera = num1;
                     maxTiempoEspera = num2;
@@ -83,12 +82,11 @@ void Juego::ArchivoConfiguracion(const std::string& nombreArch) {
         std::cout << "No se puedo abrir el archivo." << std::endl;
     }
 
-    // Inicializa las zonas con los valores leidos
     zonas = new Zonas * [numZonas];
-    zonas[0] = new Zonas(anchuraMapa, alturaMapa, 0, puebloPaletaPokemon, pokemonVida); // zona 1
-    zonas[1] = new Zonas(anchuraMapa, alturaMapa, 1, bosquePokemon, pokemonVida); // zona 2
-    zonas[2] = new Zonas(anchuraMapa, alturaMapa, 2, 0, pokemonVida, true, mewtwoVida); // Mewtwo
-    zonas[3] = new Zonas(anchuraMapa, alturaMapa, 3, 0, pokemonVida); // Liga PokENTI
+    zonas[0] = new Zonas(anchuraMapa, alturaMapa, 0, puebloPaletaPokemon, pokemonVida);
+    zonas[1] = new Zonas(anchuraMapa, alturaMapa, 1, bosquePokemon, pokemonVida);
+    zonas[2] = new Zonas(anchuraMapa, alturaMapa, 2, 0, pokemonVida, true, mewtwoVida); 
+    zonas[3] = new Zonas(anchuraMapa, alturaMapa, 3, 0, pokemonVida);
 
     personaje = new Personaje(1, 7, 'v', pokemonDanyo);
 }
@@ -96,7 +94,7 @@ void Juego::ArchivoConfiguracion(const std::string& nombreArch) {
 void Juego::MuestraPantallaDeBienvenida() const {
     std::system("cls");
     std::cout << "-----------------" << std::endl;
-    std::cout << "-   -POKENTI-   -" << std::endl;
+    std::cout << "     POKENTI     " << std::endl;
     std::cout << "-----------------" << std::endl;
     std::cout << std::endl << std::endl << "CARGANDO..." << std::endl;
     std::this_thread::sleep_for(std::chrono::seconds(0));
@@ -105,7 +103,7 @@ void Juego::MuestraPantallaDeBienvenida() const {
 void Juego::MuestraMenuPrincipal() const {
     std::system("cls");
     std::cout << "-----------------" << std::endl;
-    std::cout << "-   -POKENTI-   -" << std::endl;
+    std::cout << "     POKENTI     " << std::endl;
     std::cout << "-----------------" << std::endl;
     std::cout << " " << std::endl;
     std::cout << "BIENVENIDO!" << std::endl;
@@ -144,8 +142,8 @@ void Juego::Comienzo() {
             MuestraMenuPrincipal();
             std::cin >> eleccion;
             if (std::cin.fail()) {
-                std::cin.clear(); // clear the fail state
-                borrarInputDeEntrada(); // ignore invalid input
+                std::cin.clear(); 
+                borrarInputDeEntrada(); 
                 std::cout << "OPCION INVALIDA" << std::endl;
                 continue;
             }
@@ -163,7 +161,7 @@ void Juego::Comienzo() {
             }
             break;
         case JUGANDO:
-            JugarAlJuego(estado);  // Pasa state como referencia
+            JugarAlJuego(estado);
             if (personaje->ObtenerPokeballsRecogidas() < 0) {
                 estado = FINAL_DEL_JUEGO;
                 std::cout << "NO QUEDAN POKEBALLS EN EL INVENTARIO" << std::endl;
@@ -258,7 +256,7 @@ void Juego::JugarAlJuego(EstadoJuego& estado) {
 
         ManejoInput(corrinedo, estado);
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(1)); // Control de frames
+        std::this_thread::sleep_for(std::chrono::milliseconds(1));
     }
 }
 
@@ -284,10 +282,8 @@ void Juego::MostrarMenuDeBatallaLideresGimnasio(LiderGimnasio& liderGimnasio, bo
         std::cout << "USTED SE ENCUENTRA EN: " << ObtenerNombreZonaActual() << std::endl;
         std::cout << "-----------------------------------------------------------------------------" << std::endl;
 
-        // Mapa
         zonas[salaActual]->Muestra(personaje->ObtenerPosX(), personaje->ObtenerPosY(), personaje->ObtenerSimbolo());
 
-        // Menu combate
         std::cout << "-----------------------------------------------------------------------------" << std::endl;
         std::cout << "¡SE HA ENCONTRADO CON EL LIDER DEL GIMNASIO " << liderGimnasio.ObtenerNombre() << "!" << std::endl;
         std::cout << "LIDER: " << liderGimnasio.ObtenerSimbolo() << "  VIDA: " << liderGimnasio.ObtenerVida() << std::endl;
@@ -329,10 +325,8 @@ void Juego::MuestraMenuDeBatalla(Pokemons& pokemon, bool& corriendo, EstadoJuego
         std::cout << "USTED SE ENCUENTRA EN: " << ObtenerNombreZonaActual() << std::endl;
         std::cout << "-----------------------------------------------------------------------------" << std::endl;
 
-        // mapa
         zonas[salaActual]->Muestra(personaje->ObtenerPosX(), personaje->ObtenerPosY(), personaje->ObtenerSimbolo());
 
-        // combate
         std::cout << "-----------------------------------------------------------------------------" << std::endl;
         std::cout << "¡SE HA ENCONTRADO CON UN POKEMON SALVAJE!" << std::endl;
         std::cout << "POKEMON: " << pokemon.ObtenerSimbolo() << "  VIDA: " << pokemon.ObtenerVida() << std::endl;
@@ -351,7 +345,7 @@ void Juego::MuestraMenuDeBatalla(Pokemons& pokemon, bool& corriendo, EstadoJuego
         }
 
         switch (eleccion) {
-        case 1: // Atacar
+        case 1: 
             pokemon.DisminucionVida(personaje->ObtenerPokemonDanyo());
             std::cout << "HA ATACADO AL POKEMON RIVAL. SALUD RESTANTE: " << pokemon.ObtenerVida() << std::endl;
             if (pokemon.ObtenerVida() == 0) {
@@ -366,7 +360,7 @@ void Juego::MuestraMenuDeBatalla(Pokemons& pokemon, bool& corriendo, EstadoJuego
                 enBatalla = false;
             }
             break;
-        case 2: // Capturar
+        case 2: 
             if (personaje->ObtenerPokeballsRecogidas() > 0) {
                 float probabilidadDeCaptura = CalcularPosibilidadDeCaptura(pokemon.ObtenerVida(), 100); // 100 es la salud maxima del Pokemon normal
                 if (esMewtwo) {
@@ -393,7 +387,7 @@ void Juego::MuestraMenuDeBatalla(Pokemons& pokemon, bool& corriendo, EstadoJuego
                 std::cout << "NO LE QUEDAN POKEBALLS" << std::endl;
             }
             break;
-        case 3: // Huir
+        case 3:
             std::cout << "HUISTE DEL COMBATE" << std::endl;
             if (esMewtwo) {
                 zonas[salaActual]->RetirarMewtwo(); // Mewtwo desaparece para siempre
