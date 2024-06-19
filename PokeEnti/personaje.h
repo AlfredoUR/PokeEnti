@@ -21,7 +21,7 @@ public:
     int ObtenerPosX() const;
     int ObtenerPosY() const;
     char ObtenerSimbolo() const;
-    void Movimiento(int x, int y);
+    void Movimiento(int dx, int dy);
     void Posicion(int x, int y);
     void ActualizarSimbolo(int x, int y);
     int ObtenerPokeballsRecogidas() const;

@@ -15,32 +15,32 @@ char Personaje::ObtenerSimbolo() const {
     return simboloPersonaje;
 }
 
-void Personaje::Movimiento(int x, int y) {
-    posX += x;
-    posY += y;
+void Personaje::Movimiento(int dx, int dy) {
+    posX += dx;
+    posY += dy;
 }
 
-void Personaje::Posicion(int x, int y) {
-    posX = x;
-    posY = y;
+void Personaje::Posicion(int newX, int newY) {
+    posX = newX;
+    posY = newY;
 }
 
-void Personaje::ActualizarSimbolo(int x, int y) {
-    if (x < posX) {
+void Personaje::ActualizarSimbolo(int newX, int newY) {
+    if (newX < posX) {
         simboloPersonaje = '^';
     }
-    else if (x > posX) {
+    else if (newX > posX) {
         simboloPersonaje = 'v';
     }
-    else if (y < posY) {
+    else if (newY < posY) {
         simboloPersonaje = '<';
     }
-    else if (y > posY) {
+    else if (newY > posY) {
         simboloPersonaje = '>';
     }
 
-    posX = x;
-    posY = y;
+    posX = newX;
+    posY = newY;
 }
 
 int Personaje::ObtenerPokeballsRecogidas() const {

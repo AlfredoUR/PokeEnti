@@ -266,7 +266,7 @@ void Juego::CambiarSala(int direccion) {
             personaje->Posicion(zonas[salaActual]->ObtenerAltura() - 2, zonas[salaActual]->ObtenerAnchura() / 2);
         }
         else {
-            personaje->Posicion(1, zones[salaActual]->ObtenerAnchura() / 2);
+            personaje->Posicion(1, zonas[salaActual]->ObtenerAnchura() / 2);
         }
     }
 }

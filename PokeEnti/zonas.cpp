@@ -38,10 +38,10 @@ Zonas::Zonas(int anchura, int altura, int numeroSala, int cantidadPokemons, int 
     }
     else {
         pokemons = new Pokemons * [cantidadPokemons];
-        for (int i = 0; i < cantidadPokemons; ++i) {
+        for (int contador = 0; contador < cantidadPokemons; ++contador) {
             int pokemonPosX = std::rand() % (altura - 2) + 1;
             int pokemonPosY = std::rand() % (anchura - 2) + 1;
-            pokemons[i] = new Pokemons(pokemonPosX, pokemonPosY, 'P', vidaPokemons);
+            pokemons[contador] = new Pokemons(pokemonPosX, pokemonPosY, 'P', vidaPokemons);
         }
     }
 }
