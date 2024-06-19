@@ -93,20 +93,20 @@ void Juego::ArchivoConfiguracion(const std::string& nombreArch) {
 
 void Juego::MuestraPantallaDeBienvenida() const {
     std::system("cls");
-    std::cout << "-----------------" << std::endl;
-    std::cout << "     POKENTI     " << std::endl;
-    std::cout << "-----------------" << std::endl;
+    std::cout << "---------------------" << std::endl;
+    std::cout << "       POKEENTI       " << std::endl;
+    std::cout << "---------------------" << std::endl;
     std::cout << std::endl << std::endl << "CARGANDO..." << std::endl;
     std::this_thread::sleep_for(std::chrono::seconds(0));
 }
 
 void Juego::MuestraMenuPrincipal() const {
     std::system("cls");
-    std::cout << "-----------------" << std::endl;
-    std::cout << "     POKENTI     " << std::endl;
-    std::cout << "-----------------" << std::endl;
+    std::cout << "                        ----------------------" << std::endl;
     std::cout << " " << std::endl;
-    std::cout << "BIENVENIDO!" << std::endl;
+    std::cout << "                                POKEENTI        " << std::endl;
+    std::cout << " " << std::endl;
+    std::cout << "                        ----------------------" << std::endl;
     std::cout << " " << std::endl;
     std::cout << "PULSE 1 PARA COMENZAR" << std::endl;
     std::cout << " " << std::endl;
@@ -256,7 +256,7 @@ void Juego::JugarAlJuego(EstadoJuego& estado) {
 
         ManejoInput(corrinedo, estado);
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(1));
+        std::this_thread::sleep_for(std::chrono::milliseconds(250));
     }
 }
 
@@ -350,7 +350,7 @@ void Juego::MuestraMenuDeBatalla(Pokemons& pokemon, bool& corriendo, EstadoJuego
             std::cout << "HA ATACADO AL POKEMON RIVAL. SALUD RESTANTE: " << pokemon.ObtenerVida() << std::endl;
             if (pokemon.ObtenerVida() == 0) {
                 if (esMewtwo) {
-                    zonas[salaActual]->RetirarMewtwo(); // Mewtwo desaparece
+                    zonas[salaActual]->RetirarMewtwo();
                     std::cout << "¡MEWTWO HA SIDO VENCIDO!" << std::endl;
                 }
                 else {
@@ -362,15 +362,15 @@ void Juego::MuestraMenuDeBatalla(Pokemons& pokemon, bool& corriendo, EstadoJuego
             break;
         case 2: 
             if (personaje->ObtenerPokeballsRecogidas() > 0) {
-                float probabilidadDeCaptura = CalcularPosibilidadDeCaptura(pokemon.ObtenerVida(), 100); // 100 es la salud maxima del Pokemon normal
+                float probabilidadDeCaptura = CalcularPosibilidadDeCaptura(pokemon.ObtenerVida(), 100);
                 if (esMewtwo) {
-                    probabilidadDeCaptura /= 2; // Hacer mas dificil capturar a Mewtwo
+                    probabilidadDeCaptura /= 2; 
                 }
                 float valorAleatorio = static_cast<float>(std::rand()) / RAND_MAX;
                 if (valorAleatorio < probabilidadDeCaptura) {
                     personaje->AumentarCuentaPokemons();
                     if (esMewtwo) {
-                        zonas[salaActual]->RetirarMewtwo(); // Mewtwo desaparece para siempre
+                        zonas[salaActual]->RetirarMewtwo(); 
                         std::cout << "HA CAPTURADO A MEWTWO!" << std::endl;
                     }
                     else {
@@ -390,7 +390,7 @@ void Juego::MuestraMenuDeBatalla(Pokemons& pokemon, bool& corriendo, EstadoJuego
         case 3:
             std::cout << "HUISTE DEL COMBATE" << std::endl;
             if (esMewtwo) {
-                zonas[salaActual]->RetirarMewtwo(); // Mewtwo desaparece para siempre
+                zonas[salaActual]->RetirarMewtwo(); 
                 std::cout << "MEWTWO HA DESAPARECIDO" << std::endl;
             }
             enBatalla = false;
